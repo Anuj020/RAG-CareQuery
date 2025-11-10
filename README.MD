@@ -54,8 +54,11 @@ Query health data interactively, view retrieved context, and get AI-generated re
 │ Retrieval + Generation       │
 │ (LangChain + Gemini LLM)     │
 └──────────────────────────────┘
+```
 
-⚙️ Installation & Setup
+
+## ⚙️ Installation & Setup
+```
     1️⃣ Clone Repository
     git clone https://github.com/anujpatel-ai/CareQuery.git
     cd CareQuery
@@ -79,9 +82,10 @@ Query health data interactively, view retrieved context, and get AI-generated re
         AWS_REGION = "us-east-1"
         S3_BUCKET_NAME = "carequery"
         S3_DOWNLOADED_FILES = "s3_data/"
+```
 
-🧩 Project Structure
-
+## 🧩 Project Structure
+```
 📦 CareQuery
 ├── src/
 │   ├── data_ingested.py       # Data ingestion from AWS S3
@@ -97,8 +101,9 @@ Query health data interactively, view retrieved context, and get AI-generated re
 ├── requirements.txt
 ├── README.md
 └── healthcare.ipynb           # Notebook for testing pipeline
+```
 
-🧪 How It Works
+## 🧪 How It Works
 
 Data Ingestion
 The system fetches all .csv files from s3://carequery/ using boto3.
@@ -113,7 +118,17 @@ Embeddings and documents are stored in a persistent ChromaDB collection (data/).
 Query Execution
 On user query, the relevant context is retrieved from ChromaDB and passed to Gemini for response generation.
 
-💻 Run the Streamlit App
+## 💻 Run the Streamlit App
+```
 streamlit run src/app.py
+```
 
 
+## 👨‍💻 Author
+
+```
+Anuj Patel
+🧩 Applied AI Engineer | Building intelligent retrieval systems
+🔗 LinkedIn
+ • GitHub
+```
