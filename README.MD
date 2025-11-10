@@ -54,7 +54,7 @@ Query health data interactively, view retrieved context, and get AI-generated re
 │ Retrieval + Generation       │
 │ (LangChain + Gemini LLM)     │
 └──────────────────────────────┘
-
+```
 
 ## ⚙️ Installation & Setup
     1️⃣ Clone Repository
