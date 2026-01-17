@@ -1,138 +1,103 @@
-## 🩺 CareQuery — AI-Powered Healthcare Assistant (RAG + Gemini + AWS S3)
+# 🩺 CareQuery: Next-Gen AI Healthcare Assistant
 
-CareQuery is an end-to-end Generative AI project that helps users query healthcare-related data using a Retrieval-Augmented Generation (RAG) pipeline.
-It combines AWS S3 for data storage, LangChain for document handling, ChromaDB for vector storage, and Google Gemini (via API) for intelligent response generation.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://huggingface.co/spaces/Anuj020/CareQuery)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Gemini](https://img.shields.io/badge/Google-Gemini-orange.svg)](https://ai.google.dev/)
+[![LangChain](https://img.shields.io/badge/Framework-LangChain-green.svg)](https://www.langchain.com/)
 
-🎯 **Try it Online:** [Hugging Face Space](https://huggingface.co/spaces/Anuj020/CareQuery)
+**CareQuery** is a high-performance, enterprise-grade Retrieval-Augmented Generation (RAG) pipeline designed for healthcare data. It leverages **Google Gemini**, **Hybrid Search**, and **Parallel Execution** to deliver instant, accurate, and context-aware medical insights.
 
+---
 
-## 🚀 Key Features
+## ✨ Features that Define CareQuery
 
-Automated Data Ingestion from AWS S3
-Loads structured health data (e.g., symptom–disease mappings) directly from an S3 bucket and processes it dynamically.
+### 🚀 Ultra-Low Latency Engine
+- **Parallel Retrieval**: Executes Vector and Keyword searches simultaneously, cutting retrieval time by ~50%.
+- **Smart Caching**: Persistent BM25 indexing and Streamlit resource caching ensure the app hits the ground running.
+- **Real-time Streaming**: LLM responses stream word-by-word for a seamless, "live" interactive experience.
 
-Embeddings + Vector Store
-Generates embeddings using Google Gemini and stores them efficiently in ChromaDB for semantic retrieval.
+### 🧠 Advanced Medical Intelligence
+- **Semantic Chunking**: Instead of rigid character limits, we split text based on shifts in meaning, preserving the clinical context of your data.
+- **Hybrid Fusion (RRF)**: Combines the semantic power of **Gemini Embeddings** with the keyword precision of **BM25**, fused via Reciprocal Rank Fusion.
+- **Deterministic Storage**: Every document has a unique fingerprint (MD5), ensuring your knowledge base remains clean and free of duplicates.
 
-End-to-End RAG Pipeline
-Supports document ingestion → embedding → storage → retrieval → answer generation.
+### 🛠️ Cloud-Native Ingestion
+- **AWS S3 Integration**: Automatically syncs structured data (`.csv`) from industrial storage.
+- **On-Demand Refresh**: Trigger full pipeline updates (Download → Chunk → Embed → Index) via a single click in the UI.
 
-Dynamic File Management
-Automatically checks for existing local files (s3_data/) and only downloads new/updated ones to reduce redundancy.
+---
 
-Portable and Cloud-Native
-Works seamlessly across environments — local, Hugging Face Spaces, or cloud servers — without modification.
+## 🏗️ Technical Architecture
 
-Interactive Interface (Streamlit)
-Query health data interactively, view retrieved context, and get AI-generated responses in real-time.
-
-## 🧠 Project Architecture
-
-```text
-┌──────────────────────────────┐
-│ AWS S3 (Data)                │
-│ (CSV: symptoms & conditions) │
-└────────────┬─────────────────┘
-             │
-             ▼
-┌──────────────────────────────┐
-│ Data Ingestion Layer         │
-│ (boto3 + LangChain CSVLoader)│
-└────────────┬─────────────────┘
-             │
-             ▼
-┌──────────────────────────────┐
-│ Embedding Layer              │
-│ (Google Gemini Embeddings)   │
-└────────────┬─────────────────┘
-             │
-             ▼
-┌──────────────────────────────┐
-│ Vector Store (ChromaDB)      │
-│ Persistent Storage: data/    │
-└────────────┬─────────────────┘
-             │
-             ▼
-┌──────────────────────────────┐
-│ Retrieval + Generation       │
-│ (LangChain + Gemini LLM)     │
-└──────────────────────────────┘
+```mermaid
+graph TD
+    A[AWS S3 Bucket] -->|boto3 sync| B(Local CSV Cache)
+    B -->|Semantic Chunking| C(LangChain Experimental)
+    C -->|Gemini Embeddings| D[(ChromaDB)]
+    
+    subgraph "Parallel Retrieval Engine"
+        E[User Query] --> F{Hybrid Search}
+        F --> G[Vector Search]
+        F --> H[BM25 Keyword]
+    end
+    
+    G --> I[RRF Fusion]
+    H --> I
+    I -->|Ranked Context| J[Gemini 1.5 Flash]
+    J -->|Streaming Response| K[Streamlit UI]
 ```
 
+---
 
-## ⚙️ Installation & Setup
+## 🔧 Installation & Deployment
 
-  ###  1️⃣ Clone Repository
+### 1. Environment Setup
 ```bash
-    git clone https://github.com/anujpatel-ai/CareQuery.git
-    cd CareQuery
+# Clone and enter
+git clone https://github.com/Anuj020/RAG-CareQuery.git
+cd CareQuery
+
+# Setup environment
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+
+# Install core stack
+pip install -r requirements.txt
+pip install rank_bm25 langchain_experimental boto3
 ```
 
-  ###  2️⃣ Create Virtual Environment
-```bash
-    python -m venv rag_pipeline
-    source rag_pipeline/bin/activate  # (Linux/Mac)
-    rag_pipeline\Scripts\activate     # (Windows)
-```
-   ### 3️⃣ Install Requirements
-```bash
-    pip install -r requirements.txt
-```
-   ### 4️⃣ Add Environment Variables
-        Create a .env file in the project root:
-```ini
-        GOOGLE_API_KEY = "your_google_api_key"
-        AWS_ACCESS_KEY_ID = "your_access_key"
-        AWS_SECRET_ACCESS_KEY = "your_secret_key"
-        AWS_REGION = "your_region_name"
-        S3_BUCKET_NAME = "carequery"
-        S3_DOWNLOADED_FILES = "s3_data/"
+### 2. Configuration
+Create a `.env` file in the root:
+```env
+GOOGLE_API_KEY = "your_key"
+AWS_ACCESS_KEY_ID = "your_key"
+AWS_SECRET_ACCESS_KEY = "your_secret"
+AWS_REGION = "us-east-1"
+S3_BUCKET_NAME = "carequery"
 ```
 
-## 🧩 Project Structure
-```bash
-📦 CareQuery
-├── src/
-│   ├── data_ingested.py       # Data ingestion from AWS S3
-│   ├── embedding_manager.py   # Embedding generation logic
-│   ├── vectorstore.py         # ChromaDB-based vector store
-│   ├── retriever.py           # Context retrieval functions
-│   ├── llm_pipeline.py        # Gemini-powered response generation
-│   ├── main.py                # Main pipeline orchestration
-│   └── app.py                 # Streamlit app entry point
-│
-├── data/                      # Local persisted vector store
-├── s3_data/                   # Downloaded files from S3
-├── requirements.txt
-├── README.md
-└── healthcare.ipynb           # Notebook for testing pipeline
-```
+---
 
-## 🧪 How It Works
+## 💻 How to Use
 
-Data Ingestion
-The system fetches all .csv files from s3://carequery/ using boto3.
-Files are temporarily saved to s3_data/ and loaded via LangChain CSVLoader.
+1.  **Launch**: `streamlit run src/app.py`
+2.  **Initialize**: Open the sidebar and click **"🔄 Refresh Knowledge Base"** to sync with S3.
+3.  **Explore**: Ask questions like *"What are the complications of Type 2 Diabetes?"* and watch the system retrieve multi-source evidence in real-time.
 
-Embedding Generation
-Each record is converted to a vector embedding using Google Gemini embeddings.
+---
 
-Vector Storage
-Embeddings and documents are stored in a persistent ChromaDB collection (data/).
-
-Query Execution
-On user query, the relevant context is retrieved from ChromaDB and passed to Gemini for response generation.
-
-## 💻 Run the Streamlit App
-```bash
-streamlit run src/app.py
-```
-
+## 🤝 Contributing
+Contributions are welcome! If you're an AI engineer or medical professional, feel free to fork and submit a PR.
 
 ## 👨‍💻 Author
+**Anuj Patel**  
+*Applied AI Engineer | Building Scalable RAG Systems*  
+🔗 [LinkedIn](https://www.linkedin.com/in/anuj020/) | 🧠 [Hugging Face](https://huggingface.co/Anuj020)
 
-```text
-Anuj Patel
-🧩 Applied AI Engineer | Building intelligent retrieval systems
-🔗 LinkedIn - https://www.linkedin.com/in/anuj020/
-```
+## 🤝 Contributors
+- **Nirav Patel** (AI/LLM Engineer) 
+🔗 [LinkedIn](https://www.linkedin.com/in/nirav-patel-39a26a151/)
+
+  - Implemented High-Performance Parallel Search
+  - Integrated Semantic Chunking & Vertex Search optimizations
+  - Enhanced UI with Streaming & Caching
