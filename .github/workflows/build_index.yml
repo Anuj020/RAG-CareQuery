@@ -12,6 +12,7 @@ on:
       - "src/data_ingested.py"
       - "src/embedding.py"
       - "src/vectors.py"
+      - "src/data_ingested.py"
       - "src/requirements.txt"
       - ".github/workflows/build_index.yml"
 
