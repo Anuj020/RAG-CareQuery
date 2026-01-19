@@ -43,7 +43,7 @@ jobs:
           S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
         run: |
           python src/main.py
-          tar -czf chroma_index.tar.gz data/
+          tar -czf chroma_index.tar.gz vector_store/
 
       - name: Upload index to S3
         env:
