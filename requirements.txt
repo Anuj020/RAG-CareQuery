@@ -11,3 +11,4 @@ faiss-cpu
 chromadb
 typesense
 boto3
+langchain-text-splitters
