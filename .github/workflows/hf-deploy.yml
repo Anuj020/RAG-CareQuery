@@ -5,13 +5,13 @@ on:
     branches:
       - master
     paths:
-      - "app.py"
-      - "rag_retriever.py"
+      - "src/app.py"
+      - "src/rag_retriever.py"
       - "README.MD"
       - "requirements.txt"
-      - "main.py"           # include ONLY if main.py is used by inference
-      - "vectors.py"        # include ONLY if inference needs it
-      - "embedding.py"      # include ONLY if inference needs it (usually yes for query embedding)
+      - "src/main.py"
+      - "src/vectors.py"
+      - "src/embedding.py"
       - ".github/workflows/hf-deploy.yml"
 jobs:
   deploy:
