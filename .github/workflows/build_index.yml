@@ -8,11 +8,11 @@ on:
     branches:
       - master
     paths:
-      - "main.py"
-      - "data_ingested.py"
-      - "embedding.py"
-      - "vectors.py"
-      - "requirements.txt"
+      - "src/main.py"
+      - "src/data_ingested.py"
+      - "src/embedding.py"
+      - "src/vectors.py"
+      - "src/requirements.txt"
       - ".github/workflows/build_index.yml"
 
 jobs:
