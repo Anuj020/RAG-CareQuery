@@ -32,7 +32,7 @@ def load_llm():
 
 
 @st.cache_resource
-def load_retriever(persist_directory: str = "vector_store/", collection_name: str = "Csv_data"):
+def load_retriever(persist_directory: str = "/Users/anuj/Desktop/GenAI/rag/notebook/vector_store/", collection_name: str = "Csv_data"):
     """
     Load existing persistent ChromaDB index.
     IMPORTANT: This must already be built OFFLINE (e.g., by CI or local run).
