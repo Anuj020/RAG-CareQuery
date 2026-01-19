@@ -4,7 +4,15 @@ on:
   push:
     branches:
       - master
-
+    paths:
+      - "app.py"
+      - "rag_retriever.py"
+      - "README.MD"
+      - "requirements.txt"
+      - "main.py"           # include ONLY if main.py is used by inference
+      - "vectors.py"        # include ONLY if inference needs it
+      - "embedding.py"      # include ONLY if inference needs it (usually yes for query embedding)
+      - ".github/workflows/hf-deploy.yml"
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -34,5 +42,13 @@ jobs:
             repo_id="Anuj020/CareQuery",         # <username>/<space>
             repo_type="space",                   # must be "space"
             commit_message="Auto-deploy from GitHub"
+            ignore_patterns=[
+                "data/**",
+                "s3_data/**",
+                "*.ipynb",
+                "__pycache__/**",
+                ".git/**",
+                ".github/**"
+            ]
         )
         EOF
