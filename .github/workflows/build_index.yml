@@ -41,7 +41,7 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
         run: |
-          python main.py
+          python src/main.py
           tar -czf chroma_index.tar.gz data/
 
       - name: Upload index to S3
