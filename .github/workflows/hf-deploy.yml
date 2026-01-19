@@ -7,6 +7,7 @@ on:
     paths:
       - "src/app.py"
       - "src/rag_retriever.py"
+      - "src/data_ingested.py"
       - "README.MD"
       - "requirements.txt"
       - "src/main.py"
