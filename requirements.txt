@@ -9,6 +9,5 @@ pymupdf
 sentence-transformers
 faiss-cpu
 chromadb
-langchain-groq
 typesense
 boto3
