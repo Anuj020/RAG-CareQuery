@@ -1,4 +1,4 @@
-from main import run_ingestion,rag
+from main import rag
 
 from rag_retriever import RAGRetriever
 from langchain_google_genai import ChatGoogleGenerativeAI
