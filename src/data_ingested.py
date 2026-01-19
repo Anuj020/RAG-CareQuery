@@ -5,6 +5,7 @@ from langchain_community.document_loaders import DirectoryLoader
 from langchain_community.document_loaders import CSVLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import boto3
+
 ## load all the text fies from the directory
 
 def data_ingestion_from_s3():
