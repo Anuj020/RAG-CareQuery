@@ -31,7 +31,7 @@ if st.button("🔍 Get Answer"):
         with st.spinner("Retrieving information..."):
             # Load existing persisted vector store (built offline)
             embedding_manager = EmbeddingManager()
-            vectorstore = VectorStore(collection_name="Csv_data", persist_directory="vector_store/")
+            vectorstore = VectorStore(collection_name="Csv_data", persist_directory="/Users/anuj/Desktop/GenAI/rag/notebook/vector_store/")
             rag_retriever = RAGRetriever(vectorstore, embedding_manager)
             result = rag(query, rag_retriever, llm, top_k=3, min_score=0.1, return_context=True)
 
