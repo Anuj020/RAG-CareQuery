@@ -3,7 +3,7 @@ import os
 ## Directory Loader - To read all files from a directory
 from langchain_community.document_loaders import DirectoryLoader
 from langchain_community.document_loaders import CSVLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 import boto3
 ## load all the text fies from the directory
 
