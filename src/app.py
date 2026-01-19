@@ -30,6 +30,14 @@ if st.button("🔍 Get Answer"):
     else:
         with st.spinner("Retrieving information..."):
             # Load existing persisted vector store (built offline)
+            st.write("CWD:", os.getcwd())
+            st.write("vector_store exists?", os.path.exists("vector_store/"))
+            if os.path.exists("vector_store/"):
+                st.write("vector_store files:", os.listdir("vector_store/")[:20])
+            st.write("data exists?", os.path.exists("data/"))
+            if os.path.exists("data/"):
+                st.write("data files:", os.listdir("data/")[:20])
+
             embedding_manager = EmbeddingManager()
             vectorstore = VectorStore(collection_name="Csv_data", persist_directory="/Users/anuj/Desktop/GenAI/rag/notebook/vector_store/")
             rag_retriever = RAGRetriever(vectorstore, embedding_manager)
