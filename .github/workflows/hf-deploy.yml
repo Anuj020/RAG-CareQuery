@@ -41,7 +41,7 @@ jobs:
             folder_path=".",                      # upload entire repo
             repo_id="Anuj020/CareQuery",         # <username>/<space>
             repo_type="space",                   # must be "space"
-            commit_message="Auto-deploy from GitHub"
+            commit_message="Auto-deploy from GitHub",
             ignore_patterns=[
                 "data/**",
                 "s3_data/**",
